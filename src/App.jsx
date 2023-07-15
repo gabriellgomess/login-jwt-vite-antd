@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { ConfigProvider, Layout } from "antd"; 
 import MyContextProvider, { MyContext } from "./contexts/MyContext";
+import ptBR from "antd/locale/pt_BR"
 
 // Pages
 import Home from "./pages/Home";
@@ -37,7 +38,7 @@ const theme = {
 
 const App = () => {
   return (
-    <ConfigProvider theme={theme}>
+    <ConfigProvider theme={theme} locale={ptBR}>
     <MyContextProvider>
       <Layout style={{ minHeight: '100vh' }}>
         <Header theme={theme} />

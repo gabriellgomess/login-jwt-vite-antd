@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { Form, Input, Button, Typography, Card } from "antd";
 import { MyContext } from "../contexts/MyContext";
 
 
@@ -55,26 +56,27 @@ function Register() {
   }
 
   return (
-    <div display="flex">
-      <div>
-        <div>
-          <h1>
-            Cadastrar Usuário
-          </h1>
-          <form onSubmit={submitForm} noValidate>
-            <div>
-              <input
-                label="Nome Completo"
+    <Card
+    title="Cadastro de Usuário"
+    bordered={false}
+    style={{
+      width: 350,
+    }}
+  >
+      
+         
+          <Form onFinish={submitForm} layout="vertical">
+            <Form.Item label="Nome">
+              <Input
                 name="name"
                 required
                 value={state.userInfo.name}
                 onChange={onChangeValue}
                 placeholder="Digite seu nome completo"
               />
-            </div>
-            <div>
-              <input
-                label="Usuário"
+            </Form.Item>
+            <Form.Item label="Usuário">
+              <Input
                 name="user"
                 required
                 type="user"
@@ -82,10 +84,9 @@ function Register() {
                 onChange={onChangeValue}
                 placeholder="Digite seu usuário"
               />
-            </div>
-            <div>
-              <input
-                label="Senha"
+            </Form.Item>
+            <Form.Item label="Senha">
+              <Input.Password
                 name="password"
                 required
                 type="password"
@@ -93,21 +94,20 @@ function Register() {
                 onChange={onChangeValue}
                 placeholder="Digite sua senha"
               />
-            </div>
+            </Form.Item>
             {errorMsg}
             {successMsg}
             <div>
-              <button type="submit">
+              <Button type="primary" htmlType="submit">
                 Cadastrar
-              </button>
+              </Button>
             </div>
-          </form>
+          </Form>
           <div>
-            <button onClick={toggleNav}>Entrar</button>
+            <Button variant="outlined" onClick={toggleNav}>Entrar</Button>
           </div>
-        </div>
-      </div>
-    </div>
+    
+    </Card>
   );
 }
 

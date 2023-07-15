@@ -68,7 +68,7 @@ function Login() {
       width: 350,
     }}
   >
-    <Form onFinish={submitForm}>
+    <Form onFinish={submitForm} layout="vertical">
       <Form.Item label="E-mail">
         <Input
           name="user"
