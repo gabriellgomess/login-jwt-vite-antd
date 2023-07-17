@@ -42,8 +42,8 @@ const App = () => {
     <MyContextProvider>
       <Layout style={{ minHeight: '100vh' }}>
         <Header theme={theme} />
-        <Content style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ padding: 24, minHeight: 360 }}>
+        <Content style={{display: "flex", justifyContent: "center"}}>
+          
             <Routes>
               <Route path={`${import.meta.env.VITE_REACT_APP_PATH}`} element={<Home />} />
               <Route
@@ -55,7 +55,7 @@ const App = () => {
                 }
               />
             </Routes>
-          </div>
+          
         </Content>
         <Footer />
       </Layout>
