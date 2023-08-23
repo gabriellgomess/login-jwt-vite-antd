@@ -7,7 +7,7 @@ function Login() {
 
   const initialState = {
     userInfo: {
-      user: "",
+      email: "",
       password: "",
     },
     errorMsg: "",
@@ -71,7 +71,7 @@ function Login() {
     <Form onFinish={submitForm} layout="vertical">
       <Form.Item label="E-mail">
         <Input
-          name="user"
+          name="email"
           type="user"
           value={state.userInfo.email}
           onChange={onChangeValue}

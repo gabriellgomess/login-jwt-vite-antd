@@ -5,7 +5,7 @@ export const MyContext = createContext();
 
 // Define the base URL
 const Axios = axios.create({
-  baseURL: `${import.meta.env.VITE_REACT_APP_URL}/login/`,
+  baseURL: `${import.meta.env.VITE_REACT_APP_URL}/api/login/`,
 });
 
 const MyContextProvider = ({ children }) => {
@@ -30,7 +30,7 @@ const MyContextProvider = ({ children }) => {
   const registerUser = async (user) => {
     const register = await Axios.post("register.php", {
       name: user.name,
-      user: user.user,
+      email: user.email,
       password: user.password,
     });
     return register.data;
@@ -38,7 +38,7 @@ const MyContextProvider = ({ children }) => {
 
   const loginUser = async (user) => {
     const login = await Axios.post("login.php", {
-      user: user.user,
+      email: user.email,
       password: user.password,
     });
     return login.data;

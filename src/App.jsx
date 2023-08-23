@@ -6,7 +6,7 @@ import ptBR from "antd/locale/pt_BR"
 
 // Pages
 import Home from "./pages/Home";
-import Vendas from "./pages/Vendas";
+import Template from "./pages/Template";
 
 //Components
 import Header from "./components/Header";
@@ -27,21 +27,23 @@ function WithAuthentication({ children }) {
 
 const theme = {
   token: {
-    colorPrimary: "#f474d8",
-    colorSuccess: "#a3f47a",
-    colorWarning: "#FADB14",
+    colorPrimary: "#e9434b",
+    colorSuccess: "#38a900",
+    colorWarning: "#ffdd00",
     colorError: "#f67c7e",
-    colorInfo: "#9cc5ff"
-  }
-  
-}
+    colorInfo: "#e9434b",
+    colorTextBase: "#313131",
+    colorBgMenus: "#74c3bb",
+    borderRadius: '8px'
+  },
+};
 
 const App = () => {
   return (
     <ConfigProvider theme={theme} locale={ptBR}>
     <MyContextProvider>
       <Layout style={{ minHeight: '100vh' }}>
-        <Header theme={theme} />
+        {/* <Header theme={theme} /> */}
         <Content style={{display: "flex", justifyContent: "center"}}>
           
             <Routes>
@@ -50,7 +52,7 @@ const App = () => {
                 path={`${import.meta.env.VITE_REACT_APP_PATH}vendas`}
                 element={
                   <WithAuthentication>
-                    <Vendas theme={theme} />
+                    <Template theme={theme} />
                   </WithAuthentication>
                 }
               />

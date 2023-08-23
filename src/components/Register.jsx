@@ -8,7 +8,7 @@ function Register() {
   const initialState = {
     userInfo: {
       name: "",
-      user: "",
+      email: "",
       password: "",
     },
     errorMsg: "",
@@ -17,9 +17,8 @@ function Register() {
   const [state, setState] = useState(initialState);
 
   // On Submit the Registration Form
-  const submitForm = async (event) => {
-    event.preventDefault();
-    const data = await registerUser(state.userInfo);
+  const submitForm = async (values) => {
+    const data = await registerUser(values);
     if (data.success) {
       setState({
         ...initialState,
@@ -32,17 +31,7 @@ function Register() {
         errorMsg: data.message,
       });
     }
-  };
-
-  // On change the Input Value (name, email, password)
-  const onChangeValue = (e) => {
-    setState({
-      ...state,
-      userInfo: {
-        ...state.userInfo,
-        [e.target.name]: e.target.value,
-      },
-    });
+    // console.log(values);
   };
 
   // Show Message on Success or Error
@@ -57,56 +46,52 @@ function Register() {
 
   return (
     <Card
-    title="Cadastro de Usuário"
-    bordered={false}
-    style={{
-      width: 350,
-    }}
-  >
-      
-         
-          <Form onFinish={submitForm} layout="vertical">
-            <Form.Item label="Nome">
-              <Input
-                name="name"
-                required
-                value={state.userInfo.name}
-                onChange={onChangeValue}
-                placeholder="Digite seu nome completo"
-              />
-            </Form.Item>
-            <Form.Item label="Usuário">
-              <Input
-                name="user"
-                required
-                type="user"
-                value={state.userInfo.email}
-                onChange={onChangeValue}
-                placeholder="Digite seu usuário"
-              />
-            </Form.Item>
-            <Form.Item label="Senha">
-              <Input.Password
-                name="password"
-                required
-                type="password"
-                value={state.userInfo.password}
-                onChange={onChangeValue}
-                placeholder="Digite sua senha"
-              />
-            </Form.Item>
-            {errorMsg}
-            {successMsg}
-            <div>
-              <Button type="primary" htmlType="submit">
-                Cadastrar
-              </Button>
-            </div>
-          </Form>
-          <div>
-            <Button variant="outlined" onClick={toggleNav}>Entrar</Button>
-          </div>
-    
+      title="Cadastro de Usuário"
+      bordered={false}
+      style={{
+        width: 350,
+      }}
+    >
+      <Form onFinish={() => submitForm(state.userInfo)} layout="vertical">
+        <Form.Item label="Nome">
+          <Input
+            name="name"
+            required
+            value={state.userInfo.name}
+            onChange={(e) => setState({ ...state, userInfo: { ...state.userInfo, name: e.target.value } })}
+            placeholder="Digite seu nome completo"
+          />
+        </Form.Item>
+        <Form.Item label="Usuário">
+          <Input
+            name="email"
+            required
+            type="text"
+            value={state.userInfo.email}
+            onChange={(e) => setState({ ...state, userInfo: { ...state.userInfo, email: e.target.value } })}
+            placeholder="Digite seu usuário"
+          />
+        </Form.Item>
+        <Form.Item label="Senha">
+          <Input.Password
+            name="password"
+            required
+            value={state.userInfo.password}
+            onChange={(e) => setState({ ...state, userInfo: { ...state.userInfo, password: e.target.value } })}
+            placeholder="Digite sua senha"
+          />
+        </Form.Item>
+        {errorMsg}
+        {successMsg}
+        <div>
+          <Button type="primary" htmlType="submit">
+            Cadastrar
+          </Button>
+        </div>
+      </Form>
+      <div>
+        <Button variant="outlined" onClick={toggleNav}>Entrar</Button>
+      </div>
     </Card>
   );
 }
